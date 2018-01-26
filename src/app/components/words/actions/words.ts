@@ -42,7 +42,7 @@ export class ResetWords implements Action {
 export class GetWords implements Action {
   readonly type = WordsActionTypes.GetWords;
 
-  constructor(public payload: any) {}
+  constructor(public payload?: any) {}
 }
 
 export class GetWordsSuccess implements Action {
