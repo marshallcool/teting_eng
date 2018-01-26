@@ -29,7 +29,7 @@ export class WordsEffects {
   constructor( private actions$: Actions, private wordsService: WordsService ) {
   }
 
-  getRandomArbitrary(min, max) {
+  getRandomWords(min, max) {
     return [
       {1: Math.round(Math.random() * (max - min) + min)},
       {2: Math.round(Math.random() * (max - min) + min)},
@@ -60,7 +60,7 @@ export class WordsEffects {
           map(() => {
             this.wordsData = words;
             for (let i = 0; i < this.wordsData.length; i++) {
-              this.wordsNumber = this.getRandomArbitrary(0, 19);
+              this.wordsNumber = this.getRandomWords(0, 19);
               this.wordsData[i].words = [
                 {
                   number: this.wordsData[this.wordsNumber[0][1]].transfer
