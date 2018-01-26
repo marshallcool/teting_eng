@@ -11,14 +11,19 @@
       <p class="words-list-item__question">{{word?.word}}</p>
       <div class="words-answer">
         <mat-radio-group class="words-answer-container" [(ngModel)]="selectWord">
-          <mat-radio-button *ngFor="let answer of word?.words" [value]="answer.number">
-            {{answer?.number}}
+          <mat-radio-button [value]="word.transfer">
+            {{word?.transfer}}
+          </mat-radio-button>
+        </mat-radio-group>
+        <mat-radio-group *ngFor="let answer of testData" [ngClass]="{'hide__word': answer === word?.transfer}" class="words-answer-container" [(ngModel)]="selectWord">
+          <mat-radio-button [value]="answer" *ngIf="answer != word?.transfer">
+            {{answer}}
           </mat-radio-button>
         </mat-radio-group>
       </div>
       <div>
         <button mat-button matStepperNext color="primary" *ngIf="!isLast" (click)="next(word)">Next</button>
-        <button mat-button mat-raised-button color="accent" *ngIf="isLast" (click)="finish()">Закончить тестирование</button>
+        <button mat-button mat-raised-button color="accent" *ngIf="isLast" (click)="finish(word)">Закончить тестирование</button>
       </div>
     </div>
   </mat-step>

@@ -24,19 +24,7 @@ import { WordsService } from '../words.service';
 
 @Injectable()
 export class WordsEffects {
-  wordsData: any;
-  wordsNumber: any;
   constructor( private actions$: Actions, private wordsService: WordsService ) {
-  }
-
-  getRandomWords(min, max) {
-    return [
-      {1: Math.round(Math.random() * (max - min) + min)},
-      {2: Math.round(Math.random() * (max - min) + min)},
-      {3: Math.round(Math.random() * (max - min) + min)},
-      {4: Math.round(Math.random() * (max - min) + min)},
-      {5: Math.round(Math.random() * (max - min) + min)}
-    ];
   }
 
   @Effect()
@@ -57,33 +45,7 @@ export class WordsEffects {
     .mergeMap(words =>
       this.wordsService.addWords(words)
         .pipe(
-          map(() => {
-            this.wordsData = words;
-            for (let i = 0; i < this.wordsData.length; i++) {
-              this.wordsNumber = this.getRandomWords(0, 19);
-              this.wordsData[i].words = [
-                {
-                  number: this.wordsData[this.wordsNumber[0][1]].transfer
-                },
-                {
-                  number: this.wordsData[this.wordsNumber[1][2]].transfer
-                },
-                {
-                  number: this.wordsData[this.wordsNumber[2][3]].transfer
-                },
-                {
-                  number: this.wordsData[this.wordsNumber[3][4]].transfer
-                },
-                {
-                  number: this.wordsData[this.wordsNumber[4][5]].transfer
-                },
-                {
-                  number: this.wordsData[i].transfer
-                }
-              ];
-            }
-            return new AddWordsSuccess(words);
-          }),
+          map(() => new AddWordsSuccess(words)),
           catchError((e) => of(new AddWordsError(e)))
         )
     );

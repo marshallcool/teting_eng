@@ -22,11 +22,32 @@ export class WordsListComponent implements OnInit {
   words: Observable<any>;
   count = 0;
   pending: boolean;
+  variants: any[];
+  testingData: any[] = [
+    {
+      word: 'hello',
+      transfer: 'привет'
+    },
+    {
+      word: 'hello2',
+      transfer: 'привет2'
+    },
+    {
+      word: 'hello33',
+      transfer: 'привет3'
+    }
+  ];
+  testData: any[] = [];
 
   constructor(private store: Store<any>,
               private mdDialog: MatDialog,
               private router: Router) {
-    this.words = store.select('words').map(({data}) => data);
+    this.words = store.select('words').map(({data}) => {
+      data.map(x => {
+        this.testData.push(x.transfer);
+      });
+      return data;
+    });
     store.select('words')
       .subscribe(x => {
         this.pending = x.pending;
@@ -49,7 +70,16 @@ export class WordsListComponent implements OnInit {
     }
   }
 
-  finish() {
+  finish(data) {
+    if (data.transfer === this.selectWord) {
+      this.count++;
+    } else {
+      if (this.count <= 0) {
+        this.count = 0;
+      } else {
+        return this.count;
+      }
+    }
     const dialogRef: MatDialogRef<WordsListDialogComponent> = this.mdDialog.open(
       WordsListDialogComponent,
       {
