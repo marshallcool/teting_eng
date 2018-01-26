@@ -1,0 +1,81 @@
+<p class="words__title">Добавьте {{countWords}} слов</p>
+<div class="words" *ngIf="!load">
+  <form [formGroup]="wordsForm" novalidate (ngSubmit)="save(wordsForm)" class="words-form">
+    <div formArrayName="words">
+      <div *ngFor="let word of wordsForm.controls.words.controls; let i=index">
+        <div>
+          <span>Слово №{{i + 1}}</span>
+          <button mat-button matSuffix mat-icon-button *ngIf="wordsForm.controls.words.controls.length > 1" (click)="removeWord(i)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+
+        <div [formGroupName]="i" class="words-list">
+
+          <div class="words-list__item">
+            <mat-form-field>
+              <input matInput placeholder="слово" formControlName="word">
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="перевод" formControlName="transfer">
+            </mat-form-field>
+          </div>
+          <div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button mat-raised-button color="accent" type="submit" [disabled]="!wordsForm.valid">Сохранить слова</button>
+        <button mat-raised-button color="primary" (click)="addWord()" [disabled]="wordsForm.controls.words.controls.length >= countWords">Добавить новое слово</button>
+        <a *ngIf="wordsForm.controls.words.controls.length >= countWords && wordsForm.controls.words.valid" mat-button color="primary" href="#" routerLink="/words-list">Перейти к тесту</a>
+      </div>
+    </div>
+  </form>
+</div>
+<div *ngIf="load">
+  <form [formGroup]="wordsForm" novalidate (ngSubmit)="save(wordsForm)" class="words-form">
+    <div formArrayName="words">
+      <div *ngFor="let word of wordsForm.controls.words.controls; let i=index">
+        <div>
+          <span>Слово №{{i + 1}}</span>
+          <button mat-button matSuffix mat-icon-button *ngIf="wordsForm.controls.words.controls.length > 1" (click)="removeWord(i)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+
+        <div [formGroupName]="i" class="words-list">
+
+          <div class="words-list__item">
+            <mat-form-field>
+              <input matInput placeholder="слово" formControlName="word">
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="перевод" formControlName="transfer">
+            </mat-form-field>
+          </div>
+          <div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button mat-raised-button color="accent" type="submit" [disabled]="!wordsForm.valid">Сохранить слова</button>
+        <button mat-raised-button color="primary" (click)="addWord()" [disabled]="wordsForm.controls.words.controls.length >= countWords">Добавить новое слово</button>
+        <a *ngIf="wordsForm.controls.words.controls.length >= countWords && wordsForm.controls.words.valid" mat-button color="primary" href="#" routerLink="/words-list">Перейти к тесту</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="loading">
+  <mat-progress-spinner
+    class="example-margin"
+    mode="indeterminate"
+    *ngIf="pending">
+  </mat-progress-spinner>
+</div>

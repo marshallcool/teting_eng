@@ -1,0 +1,26 @@
+<div class="loading">
+  <mat-progress-spinner
+    class="example-margin"
+    mode="indeterminate"
+    *ngIf="pending">
+  </mat-progress-spinner>
+</div>
+<mat-horizontal-stepper [linear]="isLinear" *ngIf="!pending">
+  <mat-step *ngFor="let word of words | async; index as i; last as isLast">
+    <div class="words-list">
+      <p class="words-list-item__question">{{word?.word}}</p>
+      <div class="words-answer">
+        <mat-radio-group class="words-answer-container" [(ngModel)]="selectWord">
+          <mat-radio-button *ngFor="let answer of word?.words" [value]="answer.number">
+            {{answer?.number}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div>
+        <button mat-button matStepperNext color="primary" *ngIf="!isLast" (click)="next(word)">Next</button>
+        <button mat-button mat-raised-button color="accent" *ngIf="isLast" (click)="finish()">Закончить тестирование</button>
+      </div>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+<a href="#" routerLink="/words-add">Back</a>
