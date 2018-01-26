@@ -1,3 +1,6 @@
+<!--<ul>-->
+  <!--<li *ngFor="let lol of testingData | slice:0:1">{{lol | json}}</li>-->
+<!--</ul>-->
 <div class="loading">
   <mat-progress-spinner
     class="example-margin"
@@ -11,13 +14,19 @@
       <p class="words-list-item__question">{{word?.word}}</p>
       <div class="words-answer">
         <mat-radio-group class="words-answer-container" [(ngModel)]="selectWord">
-          <mat-radio-button [value]="word.transfer">
+          <mat-radio-button [checked]="false" [value]="word.transfer">
             {{word?.transfer}}
           </mat-radio-button>
         </mat-radio-group>
-        <mat-radio-group *ngFor="let answer of testData" [ngClass]="{'hide__word': answer === word?.transfer}" class="words-answer-container" [(ngModel)]="selectWord">
-          <mat-radio-button [value]="answer" *ngIf="answer != word?.transfer">
-            {{answer}}
+        <mat-radio-group class="words-answer-container" [(ngModel)]="selectWord">
+          <mat-radio-button
+            *ngFor="let answer of answers | slice:0:5;"
+            [ngClass]="{'hide__word': answer === word?.transfer}"
+            [value]="answer"
+          >
+            <div *ngIf="answer != word?.transfer">
+              {{answer}}
+            </div>
           </mat-radio-button>
         </mat-radio-group>
       </div>

@@ -14,11 +14,11 @@
     width: 55%;
     margin: 25px 0;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     &-container {
       display: flex;
-      align-items: center;
-      width: 100%;
-      justify-content: center;
+      flex-direction: column;
     }
   }
 }
@@ -33,4 +33,8 @@
 }
 .hide__word {
   display: none !important;
+}
+.mat-radio-button {
+  display: inline-block;
+  margin-bottom: 17px;
 }

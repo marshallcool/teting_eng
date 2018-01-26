@@ -22,29 +22,14 @@ export class WordsListComponent implements OnInit {
   words: Observable<any>;
   count = 0;
   pending: boolean;
-  variants: any[];
-  testingData: any[] = [
-    {
-      word: 'hello',
-      transfer: 'привет'
-    },
-    {
-      word: 'hello2',
-      transfer: 'привет2'
-    },
-    {
-      word: 'hello33',
-      transfer: 'привет3'
-    }
-  ];
-  testData: any[] = [];
+  answers: any[] = [];
 
   constructor(private store: Store<any>,
               private mdDialog: MatDialog,
               private router: Router) {
     this.words = store.select('words').map(({data}) => {
       data.map(x => {
-        this.testData.push(x.transfer);
+        this.answers.push(x.transfer);
       });
       return data;
     });
