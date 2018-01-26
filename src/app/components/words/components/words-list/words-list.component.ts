@@ -39,6 +39,10 @@ export class WordsListComponent implements OnInit {
       });
   }
 
+  swapWord(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
   ngOnInit() {
     this.store.dispatch(new words.GetWords());
   }
@@ -52,6 +56,13 @@ export class WordsListComponent implements OnInit {
       } else {
         return this.count;
       }
+    }
+    let count;
+    for (let i = 0; i < this.answers.length; i++) {
+      let swap = Math.round(this.swapWord(0, this.answers.length - 1));
+      count = this.answers[swap];
+      this.answers[swap] = this.answers[i];
+      this.answers[i] = count;
     }
   }
 
