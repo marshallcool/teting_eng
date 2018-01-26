@@ -9,7 +9,7 @@ import { WordsComponent } from './words.component';
 import { WordsAddComponent } from './components/words-add/words-add.component';
 import { WordsListComponent } from './components/words-list/words-list.component';
 import { WordsRoutingModule } from './words-routing.module';
-import { contacts } from './reducers/words';
+import { words } from './reducers/words';
 
 import {
   MatInputModule,
@@ -38,7 +38,7 @@ import { WordsListDialogComponent } from './components/words-list/words-list-dia
     MatRadioModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    StoreModule.forFeature('words', contacts),
+    StoreModule.forFeature('words', words),
     EffectsModule.forFeature([WordsEffects]),
   ],
   declarations: [WordsComponent, WordsAddComponent, WordsListComponent, WordsListDialogComponent],

@@ -10,7 +10,7 @@ const initialState: any = {
   error: null
 };
 
-export function contacts(state = initialState, action: WordsActions) {
+export function words(state = initialState, action: WordsActions) {
   switch (action.type) {
     case WordsActionTypes.GetWords:
       return {
