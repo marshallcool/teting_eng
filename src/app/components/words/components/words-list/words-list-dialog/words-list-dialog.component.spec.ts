@@ -1,5 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import {
+  MatInputModule,
+  MatIconModule,
+  MatButtonModule,
+  MatStepperModule,
+  MatRadioModule,
+  MatDialogModule,
+  MatProgressSpinnerModule,
+  MatDialogRef,
+  MatDialog,
+  MAT_DIALOG_DATA
+} from '@angular/material';
+
 import { WordsListDialogComponent } from './words-list-dialog.component';
 
 describe('WordsListDialogComponent', () => {
@@ -8,7 +21,20 @@ describe('WordsListDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WordsListDialogComponent ]
+      imports: [
+        MatInputModule,
+        MatIconModule,
+        MatButtonModule,
+        MatStepperModule,
+        MatRadioModule,
+        MatDialogModule,
+        MatProgressSpinnerModule,
+      ],
+      declarations: [ WordsListDialogComponent ],
+      providers: [
+        {provide: MatDialogRef, useValue: {}},
+        { provide: MAT_DIALOG_DATA, useValue: {}}
+      ]
     })
     .compileComponents();
   }));
