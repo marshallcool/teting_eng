@@ -4,13 +4,21 @@ import {
   WordsActions
 } from '../actions/words';
 
-const initialState: any = {
+export interface State {
+  data: any;
+  pending: boolean;
+  error: string;
+  success: boolean;
+}
+
+const initialState: State = {
   data: [],
   pending: false,
-  error: null
+  error: null,
+  success: false
 };
 
-export function words(state = initialState, action: WordsActions) {
+export function words(state = initialState, action: WordsActions): State {
   switch (action.type) {
     case WordsActionTypes.GetWords:
       return {

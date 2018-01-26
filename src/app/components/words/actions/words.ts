@@ -17,7 +17,7 @@ export enum WordsActionTypes {
 export class AddWords implements Action {
   readonly type = WordsActionTypes.AddWords;
 
-  constructor(public payload: Word) {}
+  constructor(public payload: any) {}
 }
 
 export class AddWordsSuccess implements Action {
@@ -41,6 +41,8 @@ export class ResetWords implements Action {
  */
 export class GetWords implements Action {
   readonly type = WordsActionTypes.GetWords;
+
+  constructor(public payload: any) {}
 }
 
 export class GetWordsSuccess implements Action {
